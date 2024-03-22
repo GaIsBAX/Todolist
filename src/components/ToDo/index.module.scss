@@ -1,0 +1,66 @@
+.Todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid rgb(130, 158, 238);
+  border-radius: 10px;
+  padding: 10px;
+
+  &Name {
+    width: 390px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    word-wrap: break-word;
+  }
+  &Title {
+    font-size: 20px;
+  }
+  &Description {
+    font-size: 14px;
+    font-weight: 300;
+    color: #655b5b;
+  }
+
+  &InfoInfo {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: end;
+    gap: 10px 0;
+    justify-content: space-between;
+  }
+
+  &Info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  &Status {
+    font-size: 14px;
+  }
+  &Date {
+    text-align: end;
+    width: 70px;
+    font-size: 12px;
+  }
+
+  &Edit {
+    display: flex;
+  }
+
+  &Button {
+    width: 24px;
+    height: 24px;
+    display: block;
+    border: none;
+    background: none no-repeat center center;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.3s;
+    background-image: url("./images/edit.svg");
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

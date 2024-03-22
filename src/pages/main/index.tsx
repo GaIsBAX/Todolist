@@ -2,12 +2,12 @@ import { FC } from "react";
 import { useTodosStore } from "../../app/stores";
 import classes from "./index.module.scss";
 import AddTodo from "../../components/AddToDo";
+import ToDo from "../../components/ToDo";
 
 const MainPage: FC = () => {
-  const [todos, addTodo] = useTodosStore((state) => [
-    state.todos,
-    state.addTodo,
-  ]);
+
+
+  const { todos, addTodo } = useTodosStore();
 
   return (
     <article className={classes.article}>
@@ -15,20 +15,25 @@ const MainPage: FC = () => {
 
       <section className={classes.articleSection}>
         <AddTodo
-          onAdd={(title, description) => {
+          onAdd={(title) => {
             if (title) {
-              addTodo(title, description);
-              
+              addTodo(title);
             }
           }}
         />
       </section>
       <section className={classes.articleSection}>
-        {!todos.length&&(
-          <p>нихуя</p>
-        )}
-        {todos.map((todo)=>(
-          
+        {todos.map((todo) => (
+          <ToDo
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}
+            date={todo.date}
+            status={todo.status}
+            
+          />
+         
         ))}
       </section>
     </article>

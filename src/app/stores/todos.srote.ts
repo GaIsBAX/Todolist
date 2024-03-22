@@ -4,8 +4,8 @@ import { create } from "zustand";
 
 type State = {
   todos: Todo[];
-  addTodo: (title: string, description: string) => void;
-  //   editTodo: () => void;
+  addTodo: (title: string) => void;
+  editTodo: (id: string) => void;
   //   updateStatus: () => void;
   //   removeTodo: (id: string) => void;
 };
@@ -14,24 +14,26 @@ export const useTodosStore = create<State>()((set, get) => ({
   todos: [
     {
       id: v1(),
-      title: "fdsa",
-      description: "adsada",
-      date: Date.now(),
+      title: "Title",
+      description: "describe ToDo",
+      date: new Date(),
       status: "overdue",
     },
   ],
-  addTodo: (title: string, description: string) => {
+  addTodo: (title: string) => {
     const { todos } = get();
     const newToDo: Todo = {
       id: v1(),
       title,
-      description,
-      date: Date.now(),
-      status: "pending",
+      description:"describe ToDo",
+      date: new Date(),
+      status: "overdue",
     };
 
     set({
       todos: [newToDo].concat(todos),
     });
   },
+
+  editTodo: (id: string) => {},
 }));

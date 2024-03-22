@@ -2,19 +2,15 @@ import classes from "./index.module.scss";
 import React, { ChangeEvent, FC, useCallback, useState } from "react";
 
 interface AddTodoProps {
-  onAdd: (title: string, description: string) => void;
+  onAdd: (title: string) => void;
 }
 
 const AddTodo: FC<AddTodoProps> = ({ onAdd }) => {
   const [value, setValue] = useState("");
-
   const createTodo = useCallback(()=>{
-
-    onAdd(value,value);
+    onAdd(value);
     setValue("");
-   
   },[value])
-
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
