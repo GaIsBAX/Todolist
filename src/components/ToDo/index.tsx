@@ -8,7 +8,6 @@ import TodoModal from "../ToDoModal";
 const ToDo: FC<Todo> = (props) => {
   const { id, title, description, date, status } = props;
   const [modal, setModal] = useState(false);
-  const { editTodo } = useTodosStore();
 
   const openModal = () => {
     setModal(true);
@@ -28,15 +27,8 @@ const ToDo: FC<Todo> = (props) => {
         <div className={classes.TodoEdit}>
           <button className={classes.TodoButton} onClick={openModal} />
 
-          <TodoModal open={modal}>
-            <h3>hello from modal</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Necessitatibus, mollitia nesciunt! Mollitia in adipisci aliquam.
-              Vero, aliquid fugit blanditiis ex sapiente dolorum voluptatibus,
-              culpa quibusdam laudantium assumenda porro, incidunt vitae.
-            </p>
-          </TodoModal>
+          <TodoModal {...props} setModal={setModal}  isOpenModal={modal}/>
+          
         </div>
       </div>
     </div>

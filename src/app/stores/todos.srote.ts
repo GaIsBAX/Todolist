@@ -5,9 +5,10 @@ import { create } from "zustand";
 type State = {
   todos: Todo[];
   addTodo: (title: string) => void;
-  editTodo: (id: string) => void;
+  getTodoById: (id: string) => Todo;
+  editTodo: (Todo: Todo) => void;
   //   updateStatus: () => void;
-  //   removeTodo: (id: string) => void;
+  removeTodo: (id: string) => void;
 };
 
 export const useTodosStore = create<State>()((set, get) => ({
@@ -20,12 +21,18 @@ export const useTodosStore = create<State>()((set, get) => ({
       status: "overdue",
     },
   ],
+
+  getTodoById: (id: string) => {
+    const { todos } = get();
+    return todos.find((todo) => todo.id === id)!;
+  },
+
   addTodo: (title: string) => {
     const { todos } = get();
     const newToDo: Todo = {
       id: v1(),
       title,
-      description:"describe ToDo",
+      description: "describe ToDo",
       date: new Date(),
       status: "overdue",
     };
@@ -35,5 +42,20 @@ export const useTodosStore = create<State>()((set, get) => ({
     });
   },
 
-  editTodo: (id: string) => {},
+  editTodo: (todo) => {
+    const { todos } = get();
+    const indexToDo = todos.indexOf(todo);
+    todos.splice(indexToDo, 1, todo);
+
+    set({
+      todos,
+    });
+  },
+
+  removeTodo: (id: string) => {
+    const { todos } = get();
+    set({
+      todos: todos.filter((todo) => todo.id !== id),
+    });
+  },
 }));

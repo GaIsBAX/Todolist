@@ -5,9 +5,13 @@ import AddTodo from "../../components/AddToDo";
 import ToDo from "../../components/ToDo";
 
 const MainPage: FC = () => {
-
-
   const { todos, addTodo } = useTodosStore();
+
+
+    console.log(todos);
+
+
+  
 
   return (
     <article className={classes.article}>
@@ -31,9 +35,7 @@ const MainPage: FC = () => {
             description={todo.description}
             date={todo.date}
             status={todo.status}
-            
           />
-         
         ))}
       </section>
     </article>
